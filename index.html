@@ -30,13 +30,12 @@
     <div id="map"></div>
     <td><div id="sidebar"></div></td>
     <script src="constants.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyA28dISjXwKZD8hKengt1iJzA3g57-tUz8&callback=initMap" async defer></script>
     <script>
       var map;
       var marker = [];
       var infoWindow = [];
       var windowOpened;
-
       function parseData(data) {
         var keys = data.values[0];
         var markerData = [];
@@ -51,29 +50,23 @@
         });
         return markerData;
       }
-
       function initMap() {
         var target = document.getElementById('map');
         var centerp = {lat: 35.388059, lng: 139.428412};
-
         map = new google.maps.Map(target, {
           center: centerp,
           zoom: 17,
         });
-
         var request = new XMLHttpRequest();
         request.open('GET', `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/DataBase?key=${API_KEY}`, true);
         request.responseType = 'json';
-
         request.onload = function () {
           var data = this.response;
           var markerData = parseData(data);
           setData(markerData);
         };
-
         request.send();
       }
-
       function addMarker(i, data) {
         var markerLatLng = new google.maps.LatLng({
           lat: Number(data['緯度']),
@@ -83,21 +76,18 @@
           position: markerLatLng,
           map: map
         });
-
         var info = '<div style="font-size:18px;font-weight:bold;margin-bottom:10px;">' + data['名称'] + '</div>';
         var datetime = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '観測日時：' + data['日付']+ ' ' +  data['時間'] + '</div>';
         var depth = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '貯水深さ：' + data['井戸深度（cm）'] + ' cm' + '</div>';
         var flow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '合計流量：' + data['総流量（mL）'] + ' ml' + '</div>';
         var nowflow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '瞬間流量：' + data['瞬間流量（mL）'] + ' ml' + '</div>';
-        var test = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' +  '<a href="' + data['水質検査結果リンク'] + '" target="_blank">' + data['水質検査結果'] + '</a></div>';
-
+        var test = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '水質検査：' + '<a href="' + data['水質検査結果'] + '" target="_blank">'  + '水質検査結果を見る'  + '</a></div>';
+        var test = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '<a href="' + data['水質検査結果'] + '" target="_blank">'  + '水質検査結果を見る'  + '</a></div>';
         infoWindow[i] = new google.maps.InfoWindow({
           content: info + datetime + depth + flow + nowflow + test
         });
-
         markerEvent(i);
       }
-
       function setData(markerData){
         var sidebar_html = "";
         for (var i = 0; i < markerData.length; i++) {
@@ -105,10 +95,8 @@
           if (!latitude) { continue; }
           addMarker(i, markerData[i]);
           var name = markerData[i]['名称'];
-
           sidebar_html += `<b>${i + 1}</b> <a href="javascript:openWindow(${i})">${name}<\/a><br />`;
         }
-
         document.getElementById("sidebar").innerHTML = `<a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a><br /><br />` + sidebar_html;
       }
       function markerEvent(i) {
