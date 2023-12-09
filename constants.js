@@ -1,2 +1,2 @@
-const API_KEY = 'API キーを入力してください';
+const API_KEY = 'AIzaSyA28dISjXwKZD8hKengt1iJzA3g57-tUz8';
 const SHEET_ID = '1KWIfcFWdDBYJd0BRLZLLFiAvZ49HvmZoDBrp5vMf15c';
