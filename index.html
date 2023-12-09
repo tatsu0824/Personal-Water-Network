@@ -76,6 +76,7 @@
       }
 
       function addMarker(i, data) {
+        clearMarkers();
         var markerLatLng = new google.maps.LatLng({
           lat: Number(data['緯度']),
           lng: Number(data['経度'])
@@ -83,6 +84,7 @@
         marker[i] = new google.maps.Marker({
           position: markerLatLng,
           map: map
+          marker.push(newMarker);
         });
 
         var info = '<div style="font-size:18px;font-weight:bold;margin-bottom:10px;">' + data['名称'] + '</div>';
