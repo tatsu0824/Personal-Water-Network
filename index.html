@@ -85,9 +85,9 @@
         });
 
         var info = '<div style="font-size:18px;font-weight:bold;margin-bottom:10px;">' + data['名称'] + '</div>';
-        var datetime = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '観測日時：' + data['日付']+ data['時間'] + '</div>';
-        var depth = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '井戸貯水深さ：' + data['井戸深度（cm）'] + ' cm' + '</div>';
-        var flow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '総流量：' + data['総流量（mL）'] + ' ml' + '</div>';
+        var datetime = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '観測日時：' + data['日付']+ ' ' +  data['時間'] + '</div>';
+        var depth = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '貯水深さ：' + data['井戸深度（cm）'] + ' cm' + '</div>';
+        var flow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '合計流量：' + data['総流量（mL）'] + ' ml' + '</div>';
         var nowflow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '瞬間流量：' + data['瞬間流量（mL）'] + ' ml' + '</div>';
         var test = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '水質検査結果：' + data['水質検査結果']  + '</div>';
         infoWindow[i] = new google.maps.InfoWindow({
