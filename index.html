@@ -89,7 +89,7 @@
         var depth = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '貯水深さ：' + data['井戸深度（cm）'] + ' cm' + '</div>';
         var flow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '合計流量：' + data['総流量（mL）'] + ' ml' + '</div>';
         var nowflow = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '瞬間流量：' + data['瞬間流量（mL）'] + ' ml' + '</div>';
-        var test = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '水質検査：' + '<a href="' + data['水質検査結果'] + '" target="_blank">'  + '</div>';
+        var test = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '水質検査：' + '<a href="' + data['水質検査結果'] + '" target="_blank">'  + '</a></div>';
         infoWindow[i] = new google.maps.InfoWindow({
           content: info + datetime + depth + flow + nowflow + test
         });
