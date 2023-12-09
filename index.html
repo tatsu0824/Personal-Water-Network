@@ -85,7 +85,7 @@
         });
 
         var info = '<div style="font-size:18px;font-weight:bold;margin-bottom:10px;">' + data['名称'] + '</div>';
-        var depth = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + 井戸深度： + data['井戸深度（cm）'] + cm + '</div>';
+        var depth = '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '井戸深度：' + data['井戸深度（cm）'] + ' cm' + '</div>';
         infoWindow[i] = new google.maps.InfoWindow({
           content: info + depth
         });
