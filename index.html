@@ -74,7 +74,12 @@
 
         request.send();
       }
-
+      function clearMarkers() {
+        for (var i = 0; i < marker.length; i++) {
+          marker[i].setMap(null);
+        }
+        marker = []; // 配列をクリア
+      }
       function addMarker(i, data) {
         clearMarkers();
         var markerLatLng = new google.maps.LatLng({
