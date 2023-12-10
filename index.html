@@ -57,6 +57,7 @@
           center: centerp,
           zoom: 17,
           mapTypeId: 'satellite',
+          tilt: 45,
         });
         var request = new XMLHttpRequest();
         request.open('GET', `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/DataBase?key=${API_KEY}`, true);
