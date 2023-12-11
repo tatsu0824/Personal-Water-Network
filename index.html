@@ -120,7 +120,7 @@
             for (var i = 0; i < 1; i++) {
               var name = markerData[i][sheetNames];
               // サイドバーのHTMLを構築2
-              sidebar_html += `<a href="javascript:openWindow(${index})">${sheetNames[0][1][2]}</a><br />`
+              sidebar_html += `<a href="javascript:openWindow(${index})">${sheetNames[0]}{sheetNames[1]}{sheetNames[2]}</a><br />`
             }
           }
         });
