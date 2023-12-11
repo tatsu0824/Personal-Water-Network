@@ -111,15 +111,18 @@
 
       function setData(markerData){
         var sidebar_html = "";
+        var names = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸']; // 表示したい名称のリスト
+        names.forEach(function(name, index) {
+          sidebar_html += `<b>${index + 1}</b> <a href="javascript:openWindow(${index})">${name}<\/a><br />`;
+        });
+
         for (var i = 0; i < markerData.length; i++) {
           var latitude = markerData[i]['緯度'];
           if (!latitude) { continue; }
           addMarker(i, markerData[i]);
-        var names = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸']; // 表示したい名称のリスト
-        
-        names.forEach(function(name, index) {
-          sidebar_html += `<b>${index + 1}</b> <a href="javascript:openWindow(${index})">${name}<\/a><br />`;
-        });
+          var name = markerData[i]['名称'];
+          sidebar_html += `<b>${i + 1}</b> <a href="javascript:openWindow(${i})">${name}<\/a><br />`;
+        }
 
         document.getElementById("sidebar").innerHTML = `<a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a><br /><br />` + sidebar_html;
       }
