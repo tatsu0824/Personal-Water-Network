@@ -116,7 +116,7 @@
           if (data && data['緯度'] && data['経度']) {
             // マーカーを追加
             addMarker(index, data);
-            markerEvent(i);
+            markerEvent();
             // サイドバーのHTMLを構築
             sidebar_html += `<a href="javascript:openWindow(${index})">${sheetName}</a><br />`;
           }
