@@ -115,11 +115,13 @@
         });
       }
       function openWindow(i) {
-        if(windowOpened){
-          windowOpened.close();
-        }
-        infoWindow[i].open(map, marker[i]);
-        windowOpened = infoWindow[i];
+        marker[i].addListener('click', function() {
+          if (windowOpened) {
+            windowOpened.close();
+          }
+          infoWindow[i].open(map, marker[i]);
+          windowOpened = infoWindow[i];
+        });
       }
     </script>
   </body>
