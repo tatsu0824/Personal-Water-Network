@@ -107,7 +107,11 @@
       }
       function markerEvent(i) {
         marker[i].addListener('click', function() {
-          openWindow(i);
+          if (windowOpened) {
+            windowOpened.close();
+          }
+          infoWindow[i].open(map, marker[i]);
+          windowOpened = infoWindow[i];
         });
       }
       function openWindow(i) {
