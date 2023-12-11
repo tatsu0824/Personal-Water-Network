@@ -128,8 +128,8 @@
       function markerEvent(i) {
         marker[i].addListener('click', function() {
           openWindow(i);
+          map.setCenter(marker[index].getPosition());
         });
-         map.setCenter(marker[index].getPosition());
       }
 
 
