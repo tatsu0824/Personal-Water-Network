@@ -119,7 +119,7 @@
             addMarker(index, data);
             sidebar_html += `<a href="javascript:openWindow(${index})">${sheetName}</a><br />`
             }
-          }
+          });
 
         document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>`;
       }
@@ -127,7 +127,6 @@
       function markerEvent(i) {
         marker[i].addListener('click', function() {
           openWindow(i);
-          
         });
       }
 
