@@ -117,7 +117,7 @@
           if (data && data['緯度'] && data['経度']) {
             // マーカーを追加
             addMarker(index, data);
-            for (var i = 0; i < markerData.length; i++) {
+            for (var i = 0; i < 1; i++) {
               var name = markerData[i][sheetNames];
               // サイドバーのHTMLを構築
               sidebar_html += `<a href="javascript:openWindow(${index})">${name}</a><br />`
