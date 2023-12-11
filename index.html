@@ -63,20 +63,20 @@
           tilt: 45,
         });
         sheetNames.forEach(function(sheetName, index) {
-    var requestURL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sheetName}?key=${API_KEY}`;
-    var request = new XMLHttpRequest();
-    request.open('GET', requestURL, true);
-    request.responseType = 'json';
-    request.onload = function() {
-      var data = this.response;
-      var markerData = parseData(data);
-      if (markerData.length > 0) {
-        setData(markerData, sheetName, index);  // 修正: setDataにシート名とインデックスを渡す
+          var requestURL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sheetName}?key=${API_KEY}`;
+          var request = new XMLHttpRequest();
+          request.open('GET', requestURL, true);
+          request.responseType = 'json';
+          request.onload = function() {
+            var data = this.response;
+            var markerData = parseData(data);
+            if (markerData.length > 0) {
+              setData(markerData, sheetName, index);  // 修正: setDataにシート名とインデックスを渡す
+            }
+          };
+          request.send();
+        });
       }
-    };
-    request.send();
-  });
-}
 
       function addMarker(i, data) {
         var markerLatLng = new google.maps.LatLng({
@@ -112,15 +112,15 @@
       }
 
       function setData(markerData, sheetName, index){
-  var data = markerData.find(d => d['名称'] === sheetName);
-  if (data && data['緯度'] && data['経度']) {
-    addMarker(index, data);
-  }
-
-  var sidebar_html = document.getElementById("sidebar").innerHTML;
-  sidebar_html += `<a href="javascript:openWindow(${index})">${sheetName}</a><br />`;
-  document.getElementById("sidebar").innerHTML = sidebar_html;
-}
+        var data = markerData.find(d => d['名称'] === sheetName);
+        if (data && data['緯度'] && data['経度']) {
+          addMarker(index, data);
+        }
+      
+        var sidebar_html = document.getElementById("sidebar").innerHTML;
+        sidebar_html += `<a href="javascript:openWindow(${index})">${sheetName}</a><br />`;
+        document.getElementById("sidebar").innerHTML = sidebar_html+ `<br /><br /><br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">データベース(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>`;
+      }
 
       function markerEvent(i) {
         marker[i].addListener('click', function() {
