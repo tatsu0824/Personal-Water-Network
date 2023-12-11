@@ -119,14 +119,13 @@
         for (var i = 0; i < markerData.length; i++) {
           var latitude = markerData[i]['緯度'];
           if (!latitude) { continue; }
-          addMarker(3, markerData[i]-2);
+          addMarker(3, markerData[i]);
           var name = markerData[i]['名称'];
           sidebar_html += ` <a href="javascript:openWindow(${i})">${name}<\/a><br />`;
         }
 
         document.getElementById("sidebar").innerHTML = `<a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a><br /><br />` + sidebar_html;
       }
-
 
       function markerEvent(i) {
         marker[i].addListener('click', function() {
