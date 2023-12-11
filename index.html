@@ -110,18 +110,18 @@
 
       function setData(markerData){
         var sidebar_html = "";
-        sheetNames.forEach(function(name, index) {
-          sidebar_html += `<a href="javascript:openWindow(${index})">${name}<\/a><br />`;
+        sheetNames.forEach(function(sheetName, index) {
+          // マーカーデータの中から、現在のシート名に対応するデータを探す
+          var data = markerData.find(d => d['名称'] === sheetName);
+          if (data && data['緯度'] && data['経度']) {
+            // マーカーを追加
+            addMarker(index, data);
+            // サイドバーのHTMLを構築
+            sidebar_html += `<a href="javascript:openWindow(${index})">${sheetName}</a><br />`;
+          }
         });
 
-        for (var i = 0; i < markerData.length; i++) {
-          var latitude = markerData[i]['緯度'];
-          if (!latitude) { continue; }
-          addMarker(i, markerData[i]);
-          var name = markerData[i]['名称'];
-        }
-
-        document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>` ;
+        document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>`;
       }
 
       function markerEvent(i) {
@@ -131,12 +131,13 @@
       }
 
 
-      function openWindow(i) {
-        if(windowOpened){
+      function openWindow(index) {
+        if (windowOpened) {
           windowOpened.close();
         }
-        infoWindow[i].open(map, marker[0]);
-        windowOpened = infoWindow[i];
+        infoWindow[index].open(map, marker[index]);
+        windowOpened = infoWindow[index];
+        map.setCenter(marker[index].getPosition());
       }
     </script>
   </body>
