@@ -111,16 +111,14 @@
 
       function setData(markerData){
         var sidebar_html = "";
-        var names = markerData[i]['名称']; // 表示したい名称のリスト
-        names.forEach(function(name, index) {
-          sidebar_html += `<a href="javascript:openWindow(${index})">${name}<\/a><br />`;
-        });
 
         for (var i = 0; i < markerData.length; i++) {
           var latitude = markerData[i]['緯度'];
           if (!latitude) { continue; }
           addMarker(3, markerData[i]);
-          var name = markerData[i]['名称'];
+          var names = markerData[i]['名称'];
+          names.forEach(function(name, index) {
+          sidebar_html += `<a href="javascript:openWindow(${index})">${name}<\/a><br />`;
         }
 
         document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>` ;
