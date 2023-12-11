@@ -118,7 +118,7 @@
             // マーカーを追加
             addMarker(index, data);
             for (var i = 0; i < markerData.length; i++) {
-              var name = markerData[i]['名称'];
+              var name = markerData[i][sheetNames];
               // サイドバーのHTMLを構築
               sidebar_html += `<a href="javascript:openWindow(${index})">${name}</a><br />`
             }
