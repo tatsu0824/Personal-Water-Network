@@ -126,7 +126,7 @@
       }
 
       function markerEvent(i) {
-        marker[i].addListener('click', function() {
+        marker[i].addListener('click', function(markerCopy, infoWindowCopy) {
           openWindow(i);
         });
       }
