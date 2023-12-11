@@ -97,16 +97,7 @@
         infoWindow[i] = new google.maps.InfoWindow({
           content: infoContent
         });
-
-        marker[i].addListener('click', (function(markerCopy, infoWindowCopy) {
-          return function() {
-            if (windowOpened) {
-              windowOpened.close();
-            }
-            infoWindowCopy.open(map, markerCopy);
-            windowOpened = infoWindowCopy;
-          };
-        })(marker[i], infoWindow[i]));
+        markerEvent(i);
       }
 
       function setData(markerData){
@@ -130,6 +121,7 @@
           openWindow(i);
         });
       }
+
 
       function openWindow(i) {
         if(windowOpened){
