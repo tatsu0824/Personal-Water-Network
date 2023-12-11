@@ -97,7 +97,16 @@
           content: infoContent
         });
 
-        
+        marker[i].addListener('click', (function(markerCopy, infoWindowCopy) {
+          map.setCenter(marker[index].getPosition());
+          return function() {
+            if (windowOpened) {
+              windowOpened.close();
+            }
+            infoWindowCopy.open(map, markerCopy);
+            windowOpened = infoWindowCopy;
+          };
+        })(marker[i], infoWindow[i]));
         markerEvent(i);
       }
 
