@@ -98,7 +98,6 @@
         });
 
         marker[i].addListener('click', (function(markerCopy, infoWindowCopy) {
-          map.setCenter(marker[index].getPosition());
           return function() {
             if (windowOpened) {
               windowOpened.close();
