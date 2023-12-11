@@ -97,15 +97,7 @@
           content: infoContent
         });
 
-        marker[i].addListener('click', (function(markerCopy, infoWindowCopy) {
-          return function() {
-            if (windowOpened) {
-              windowOpened.close();
-            }
-            infoWindowCopy.open(map, markerCopy);
-            windowOpened = infoWindowCopy;
-          };
-        })(marker[i], infoWindow[i]));
+        
         markerEvent(i);
       }
 
