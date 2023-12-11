@@ -119,8 +119,7 @@
         for (var i = 0; i < markerData.length; i++) {
           var latitude = markerData[i]['緯度'];
           if (!latitude) { continue; }
-          addMarker(3, markerData[i]);
-          var name = markerData[i]['名称'];
+          addMarker(i, markerData[i]);
         }
 
         document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>` ;
@@ -138,6 +137,8 @@
         }
         infoWindow[i].open(map, marker[i]);
         windowOpened = infoWindow[i];
+        // 地図の中心をマーカーの位置に移動
+        map.setCenter(marker[i].getPosition());
       }
     </script>
   </body>
