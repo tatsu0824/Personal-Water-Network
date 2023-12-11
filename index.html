@@ -42,7 +42,7 @@
         var keys = data.values[0];
         var markerData = [];
         data.values.forEach(function(value, i) {
-          if (i < 2) {
+          if (i > 0) {
             var hash = {};
             value.forEach(function(d, j) {
               hash[keys[j]] = d;
@@ -62,8 +62,6 @@
           mapTypeId: 'satellite',
           tilt: 45,
         });
-
-        
         sheetNames.forEach(function(sheetName) {
           var requestURL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sheetName}?key=${API_KEY}`;
           var request = new XMLHttpRequest();
