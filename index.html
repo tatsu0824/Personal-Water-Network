@@ -129,6 +129,7 @@
         marker[i].addListener('click', function() {
           openWindow(i);
         });
+         map.setCenter(marker[index].getPosition());
       }
 
 
@@ -138,7 +139,7 @@
         }
         infoWindow[index].open(map, marker[index]);
         windowOpened = infoWindow[index];
-        map.setCenter(marker[index].getPosition());
+       
       }
     </script>
   </body>
