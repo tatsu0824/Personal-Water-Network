@@ -101,18 +101,15 @@
 
       function setData(markerData){
         var sidebar_html = "";
-        sheetNames.forEach(function(name, index) {
-          sidebar_html += `<a href="javascript:openWindow(${index})">${name}<\/a><br />`;
-        });
+  markerData.forEach(function(data, index) {
+    if (data['緯度'] && data['経度']) {
+      addMarker(index, data);
+      sidebar_html += `<a href="javascript:openWindow(${index})">${data['名称']}</a><br />`;
+    }
+  });
 
-        for (var i = 0; i < markerData.length; i++) {
-          var latitude = markerData[i]['緯度'];
-          if (!latitude) { continue; }
-          addMarker(i, markerData[i]);
-        }
-
-        document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>` ;
-      }
+  document.getElementById("sidebar").innerHTML = sidebar_html + `<br /><br /><a target="_blank" href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?usp=sharing">元データ(Google スプレッドシート)</a><br /><a target="_blank" href="https://github.com/tatsu0824/Personal-Water-Network/tree/main">ソースコード(GitHub)</a>` ;
+}
 
       function markerEvent(i) {
         marker[i].addListener('click', function() {
