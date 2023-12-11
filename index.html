@@ -36,6 +36,7 @@
       var marker = [];
       var infoWindow = [];
       var windowOpened;
+      var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸'];
 
       function parseData(data) {
         var keys = data.values[0];
@@ -62,7 +63,7 @@
           tilt: 45,
         });
 
-        var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸'];
+        
         sheetNames.forEach(function(sheetName) {
           var requestURL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sheetName}?key=${API_KEY}`;
           var request = new XMLHttpRequest();
@@ -102,8 +103,7 @@
 
       function setData(markerData){
         var sidebar_html = "";
-        var names = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸']; // 表示したい名称のリスト
-        names.forEach(function(name, index) {
+        sheetNames.forEach(function(name, index) {
           sidebar_html += `<a href="javascript:openWindow(${index})">${name}<\/a><br />`;
         });
 
