@@ -111,7 +111,7 @@
 
       function setData(markerData){
         var sidebar_html = "";
-        var names = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸']; // 表示したい名称のリスト
+        var names = markerData[i]; // 表示したい名称のリスト
         names.forEach(function(name, index) {
           sidebar_html += `<a href="javascript:openWindow(${index})">${name}<\/a><br />`;
         });
