@@ -59,13 +59,18 @@
           mapTypeId: 'satellite',
           tilt: 45,
         });
-        var request = new XMLHttpRequest();
-        request.open('GET', `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/DataBase?key=${API_KEY}`, true);
-        request.responseType = 'json';
-        request.onload = function () {
-          var data = this.response;
-          var markerData = parseData(data);
-          setData(markerData);
+        var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸'];
+        sheetNames.forEach(function(sheetName) {
+          var requestURL = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${sheetName}!A1:Z1?key=${API_KEY}`;
+          var request = new XMLHttpRequest();
+          request.open('GET', requestURL, true);
+          request.responseType = 'json';
+          request.onload = function () {
+            var data = this.response;
+            var markerData = parseData(data);
+            setData(markerData);
+          };
+          request.send();
         };
         request.send();
       }
