@@ -116,11 +116,11 @@
           sidebar_html += `<b>${index + 1}</b> <a href="javascript:openWindow(${index})">${name}<\/a><br />`;
         });
 
-        for (var i = 0; i < markerData.length; i++) {
+        for (var i = -2; i < markerData.length; i++) {
           var latitude = markerData[i]['緯度'];
           if (!latitude) { continue; }
           addMarker(i, markerData[i]);
-          var name = markerData[i];
+          var name = markerData[i]['名称'];
           sidebar_html += ` <a href="javascript:openWindow(${i})">${name}<\/a><br />`;
         }
 
