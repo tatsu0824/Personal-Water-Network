@@ -119,7 +119,7 @@
         for (var i = 0; i < markerData.length; i++) {
           var latitude = markerData[i]['緯度'];
           if (!latitude) { continue; }
-          addMarker(3, markerData[i]);
+          addMarker(3, markerData[i]-2);
           var name = markerData[i]['名称'];
           sidebar_html += ` <a href="javascript:openWindow(${i})">${name}<\/a><br />`;
         }
