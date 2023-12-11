@@ -102,6 +102,7 @@
             if (windowOpened) {
               windowOpened.close();
             }
+            map.setCenter(marker[index].getPosition());
             infoWindowCopy.open(map, markerCopy);
             windowOpened = infoWindowCopy;
           };
