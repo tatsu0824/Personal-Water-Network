@@ -96,7 +96,16 @@
         infoWindow[i] = new google.maps.InfoWindow({
           content: infoContent
         });
-        markerEvent(i);
+
+        marker[i].addListener('click', (function(markerCopy, infoWindowCopy) {
+          return function() {
+            if (windowOpened) {
+              windowOpened.close();
+            }
+            infoWindowCopy.open(map, markerCopy);
+            windowOpened = infoWindowCopy;
+          };
+        })(marker[i], infoWindow[i]));
       }
 
       function setData(markerData){
