@@ -35,9 +35,8 @@
       var map;
       var marker = [];
       var infoWindow = [];
-      var windowOpened= [];
-      var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸','遠藤５１７２'];
-
+      var windowOpened;
+      var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸'];
       function parseData(data) {
         var keys = data.values[0];
         var markerData = [];
@@ -52,13 +51,12 @@
         });
         return markerData;
       }
-
       function initMap() {
         var target = document.getElementById('map');
         var centerp = {lat: 35.388059, lng: 139.428412};
         map = new google.maps.Map(target, {
           center: centerp,
-          zoom: 16,
+          zoom: 17,
           mapTypeId: 'satellite',
           tilt: 45,
         });
@@ -77,7 +75,6 @@
           request.send();
         });
       }
-
       function addMarker(i, data) {
         var markerLatLng = new google.maps.LatLng({
           lat: Number(data['緯度']),
@@ -87,18 +84,15 @@
           position: markerLatLng,
           map: map
         });
-
         var infoContent = '<div style="font-size:18px;font-weight:bold;margin-bottom:10px;">' + data['名称'] + '</div>' +
                           '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '観測日時：' + data['日付']+ ' ' +  data['時間'] + '</div>' +
                           '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '貯水深さ：' + data['井戸深度（cm）'] + ' cm' + '</div>' +
                           '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '合計流量：' + data['総流量（mL）'] + ' ml' + '</div>' +
                           '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '瞬間流量：' + data['瞬間流量（mL）'] + ' ml' + '</div>' +
                           '<div style="font-size:12px;font-weight:bold;margin-bottom:10px;">' + '水質検査：' + '<a href="' + data['水質検査結果'] + '" target="_blank">'  + '水質検査結果を見る'  + '</a></div>';
-
         infoWindow[i] = new google.maps.InfoWindow({
           content: infoContent
         });
-
         marker[i].addListener('click', (function(markerCopy, infoWindow) {
           return function() {
             if (windowOpened) {
@@ -110,13 +104,12 @@
         })(marker[i], infoWindow[i]));
         markerEvent(i);
       }
-
       function setData(markerData, sheetName, index){
         var data = markerData.find(d => d['名称'] === sheetName);
         if (data && data['緯度'] && data['経度']) {
           addMarker(index, data);
         }
-      
+
         var sidebar_html = document.getElementById("sidebar").innerHTML;
         sidebar_html += `<a href="javascript:openWindow(${index})">${sheetName}</a><br />`;
         document.getElementById("sidebar").innerHTML = sidebar_html;
@@ -127,8 +120,6 @@
           openWindow(i);
         });
       }
-
-
       function openWindow(index) {
         if (windowOpened) {
           windowOpened.close();
