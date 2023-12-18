@@ -36,7 +36,7 @@
       var marker = [];
       var infoWindow = [];
       var windowOpened;
-      var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸','藤沢市遠藤５１７２'];
+      var sheetNames = ['森アトリエ前井戸', '森の喫煙所井戸', 'SBC前井戸','遠藤５１７２','遠藤４６４４'];
 
       function parseData(data) {
         var keys = data.values[0];
@@ -58,7 +58,7 @@
         var centerp = {lat: 35.388059, lng: 139.428412};
         map = new google.maps.Map(target, {
           center: centerp,
-          zoom: 17,
+          zoom: 15,
           mapTypeId: 'satellite',
           tilt: 45,
         });
